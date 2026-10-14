@@ -14,7 +14,7 @@
 
 ---
 
-## 💥 The Dilemma Every PWA Faces
+## The Dilemma
 
 Building a full-screen mobile web app or PWA often leaves developers trapped between two frustrating bugs:
 
@@ -38,7 +38,7 @@ Building a full-screen mobile web app or PWA often leaves developers trapped bet
 
 ---
 
-## ⚡ The Solution: `pwa-zerochin`
+## The Solution
 
 `pwa-zerochin` automatically detects the environment and ensures the viewport is always pixel-perfect:
 
@@ -47,7 +47,7 @@ Building a full-screen mobile web app or PWA often leaves developers trapped bet
 
 ---
 
-## 📦 Installation
+## Installation
 
 ```bash
 npm install pwa-zerochin
@@ -59,7 +59,7 @@ yarn add pwa-zerochin
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. React / Vite / Next.js
 
@@ -137,7 +137,7 @@ if (isStandalone()) {
 
 ---
 
-## 🛡️ Zero-Flash Pre-Mount Script
+## Zero-Flash Pre-Mount Script
 
 To eliminate any 1-frame layout shift or visual chin jump before React/Vue/JS hydrates, add this tiny inline snippet to your `<head>`:
 
@@ -168,7 +168,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 ---
 
-## 🎨 Tailwind CSS Integration
+## Tailwind CSS Integration
 
 You can easily reference `--pwa-vh` in Tailwind CSS:
 
@@ -202,7 +202,7 @@ Now you can simply use:
 
 ---
 
-## 🔍 API Reference
+## API Reference
 
 ### JavaScript / TypeScript Core
 
@@ -222,7 +222,7 @@ Now you can simply use:
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Pull requests and issues are welcome! Feel free to report any browser edge cases or suggest improvements.
 
@@ -235,6 +235,6 @@ npm run build
 
 ---
 
-## 📄 License
+## License
 
 [MIT](LICENSE) © [Mohd Owais Naim](https://github.com/owaisnaim)
