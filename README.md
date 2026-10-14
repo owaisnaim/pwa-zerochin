@@ -48,8 +48,8 @@ Building a full-screen mobile web app or PWA often leaves developers trapped bet
 
 `pwa-zerochin` dynamically balances the viewport based on the operating environment:
 
-* 📱 **Installed PWA Standalone Mode**: Automatically locks strictly to **`100vh`** $\rightarrow$ **ZERO black chin, 100% full-bleed OLED coverage.**
-* 🌐 **Mobile Browser Tabs (Safari & Chrome)**: Automatically adapts to **`100dvh`** $\rightarrow$ **ZERO toolbar clipping, all buttons sit flush above the browser bar.**
+* 📱 **Installed PWA Standalone Mode**: Automatically locks strictly to **`100vh`** → **ZERO black chin, 100% full-bleed OLED coverage.**
+* 🌐 **Mobile Browser Tabs (Safari & Chrome)**: Automatically adapts to **`100dvh`** → **ZERO toolbar clipping, all buttons sit flush above the browser bar.**
 
 ---
 
