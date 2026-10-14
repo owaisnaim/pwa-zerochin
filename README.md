@@ -19,37 +19,32 @@
 Building a full-screen mobile web app or PWA often leaves developers trapped between two frustrating bugs:
 
 ```
-      Traditional 100vh                    Modern 100dvh
-   (Mobile Browser Tab)               (iOS Standalone PWA)
-
-  ┌────────────────────┐              ┌────────────────────┐
-  │      Top Bar       │              │    Dynamic Island  │
-  ├────────────────────┤              ├────────────────────┤
-  │                    │              │                    │
-  │                    │              │                    │
-  │     Video / UI     │              │     Video / UI     │
-  │                    │              │                    │
-  │ ░░░░░░░░░░░░░░░░░░ │              ├────────────────────┤
-  ├────────────────────┤              │ █ BLACK CHIN GAP █ │ <── WebKit dvh bug!
-  │ [Browser Toolbar]  │              └────────────────────┘
-  └────────────────────┘                  (Home Indicator)
-   (Buttons clipped!)
+      In Browser Tabs                      In Standalone PWA
+ ┌──────────────────────┐               ┌──────────────────────┐
+ │       Top Bar        │               │    Dynamic Island    │
+ ├──────────────────────┤               ├──────────────────────┤
+ │                      │               │                      │
+ │                      │               │                      │
+ │      Video / UI      │               │      Video / UI      │
+ │                      │               │                      │
+ │ ░░░░░░░░░░░░░░░░░░░░ │               ├──────────────────────┤
+ ├──────────────────────┤               │  █ BLACK CHIN GAP █  │ <── Viewport bug!
+ │  [Browser Toolbar]   │               └──────────────────────┘
+ └──────────────────────┘                   (Home Indicator)
+  (Buttons hidden under!)
 ```
 
-1. **Bug #1: The Browser Toolbar Cutoff (`100vh`)**
-   In normal Safari and Chrome mobile browser tabs, CSS `100vh` calculates height as the *Large Viewport* (`100lvh`), which ignores the browser's bottom navigation bar (~60–84px tall). Your bottom controls, action buttons, and scrubbers end up **hidden behind the browser UI**.
-
-2. **Bug #2: The PWA "Black Chin" (`100dvh`)**
-   To fix Bug #1, you switch to `100dvh`. But when a user installs your PWA to their iOS Home Screen, WebKit treats the bottom home indicator / safe area as a dynamic bar. It shrinks the viewport and leaves an **ugly empty black chin/gap at the bottom** of the OLED screen instead of going full-bleed!
+1. **In Mobile Browser Tabs**: The browser's bottom navigation bar covers your bottom action buttons, scrubbers, and controls.
+2. **In Standalone Installed PWA**: Fixing the browser tab bug causes an ugly empty black gap ("chin") at the bottom of the screen instead of going full-bleed edge-to-edge.
 
 ---
 
 ## ⚡ The Solution: `pwa-zerochin`
 
-`pwa-zerochin` dynamically balances the viewport based on the operating environment:
+`pwa-zerochin` automatically detects the environment and ensures the viewport is always pixel-perfect:
 
-* 📱 **Installed PWA Standalone Mode**: Automatically locks strictly to **`100vh`** → **ZERO black chin, 100% full-bleed OLED coverage.**
-* 🌐 **Mobile Browser Tabs (Safari & Chrome)**: Automatically adapts to **`100dvh`** → **ZERO toolbar clipping, all buttons sit flush above the browser bar.**
+* 📱 **Installed PWA**: 100% full-bleed edge-to-edge screen coverage with **zero black chin**.
+* 🌐 **Mobile Browser Tabs**: All controls and buttons sit **flush above the browser navigation bar** with zero toolbar clipping.
 
 ---
 
@@ -75,11 +70,11 @@ Import the reactive hook directly into your components:
 import { usePwaZeroChin } from 'pwa-zerochin/react';
 
 export default function App() {
-  const { isStandalone, vhUnit, vhValue } = usePwaZeroChin();
+  const { style } = usePwaZeroChin();
 
   return (
     <div
-      style={{ height: vhValue }} // '100vh' in PWA, '100dvh' in browser
+      style={style}
       className="w-full bg-black text-white overflow-hidden"
     >
       <main className="h-full flex flex-col justify-between">
@@ -103,7 +98,7 @@ import 'pwa-zerochin/styles.css';
 Use the built-in classes or CSS custom variables:
 
 ```html
-<!-- Full viewport container (Mode-aware) -->
+<!-- Full viewport container (Auto-adapts to environment) -->
 <div class="h-pwa w-full overflow-hidden">
   ...
 </div>
@@ -117,12 +112,12 @@ Use the built-in classes or CSS custom variables:
 Or reference the CSS variables directly in your own CSS:
 ```css
 .my-container {
-  height: var(--pwa-vh);      /* 100vh in PWA | 100dvh in browser */
+  height: var(--pwa-vh);
   max-height: var(--pwa-vh);
 }
 
 .my-bottom-sheet {
-  height: var(--pwa-half-vh); /* 50vh in PWA | 50dvh in browser */
+  height: var(--pwa-half-vh);
 }
 ```
 
@@ -179,7 +174,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 You can easily reference `--pwa-vh` in Tailwind CSS:
 
 ```html
-<div className="h-[var(--pwa-vh,100vh)] w-full">
+<div className="h-[var(--pwa-vh)] w-full">
   ...
 </div>
 ```
@@ -191,8 +186,8 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        pwa: 'var(--pwa-vh, 100vh)',
-        'pwa-half': 'var(--pwa-half-vh, 50vh)',
+        pwa: 'var(--pwa-vh)',
+        'pwa-half': 'var(--pwa-half-vh)',
       },
     },
   },
@@ -202,7 +197,7 @@ module.exports = {
 Now you can simply use:
 ```html
 <div class="h-pwa w-full">
-  <!-- 100vh in PWA, 100dvh in browser tab -->
+  <!-- Perfect height in both PWA and browser tabs -->
 </div>
 ```
 
@@ -228,9 +223,9 @@ Now you can simply use:
 
 ### CSS Variables
 
-| Variable | PWA Standalone | Mobile Browser Tab |
+| Variable | Installed PWA | Mobile Browser Tab |
 | :--- | :--- | :--- |
-| `--pwa-vh` | `100vh` | `100dvh` |
+| `--pwa-vh` | `100vh` (Edge-to-edge) | `100dvh` (Above browser bar) |
 | `--pwa-half-vh` | `50vh` | `50dvh` |
 
 ---
