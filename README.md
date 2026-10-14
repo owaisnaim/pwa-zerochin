@@ -1,7 +1,7 @@
 <div align="center">
   <h1>pwa-zerochin</h1>
   <p><strong>Intelligent mode-aware viewport engine for Progressive Web Apps.</strong><br>
-  Zero black chins in standalone PWA. Zero toolbar clipping in mobile browser tabs.</p>
+  Zero black chins in iOS standalone PWA. Zero toolbar clipping in mobile browser tabs.</p>
 
   <p>
     <a href="https://www.npmjs.com/package/pwa-zerochin"><img src="https://img.shields.io/npm/v/pwa-zerochin.svg?style=flat-square&color=black" alt="npm version"></a>
