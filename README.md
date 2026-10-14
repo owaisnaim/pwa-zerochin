@@ -1,17 +1,16 @@
-# pwa-zerochin
+<div align="center">
+  <h1>pwa-zerochin</h1>
+  <p><strong>Intelligent mode-aware viewport engine for Progressive Web Apps.</strong><br>
+  Zero black chins in standalone PWA. Zero toolbar clipping in mobile browser tabs.</p>
 
-<p align="center">
-  <strong>Intelligent mode-aware viewport engine for Progressive Web Apps.</strong><br>
-  Zero black chins in standalone PWA. Zero toolbar clipping in mobile browser tabs.
-</p>
-
-<p align="center">
-  <a href="https://www.npmjs.com/package/pwa-zerochin"><img src="https://img.shields.io/npm/v/pwa-zerochin.svg?style=flat-square&color=black" alt="npm version"></a>
-  <a href="https://github.com/owaisnaim/pwa-zerochin/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-black.svg?style=flat-square" alt="license"></a>
-  <img src="https://img.shields.io/badge/size-%3C1KB-black.svg?style=flat-square" alt="bundle size">
-  <img src="https://img.shields.io/badge/dependencies-0-black.svg?style=flat-square" alt="zero dependencies">
-  <img src="https://img.shields.io/badge/TypeScript-Ready-black.svg?style=flat-square" alt="typescript ready">
-</p>
+  <p>
+    <a href="https://www.npmjs.com/package/pwa-zerochin"><img src="https://img.shields.io/npm/v/pwa-zerochin.svg?style=flat-square&color=black" alt="npm version"></a>
+    <a href="https://github.com/owaisnaim/pwa-zerochin/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-black.svg?style=flat-square" alt="license"></a>
+    <img src="https://img.shields.io/badge/size-%3C1KB-black.svg?style=flat-square" alt="bundle size">
+    <img src="https://img.shields.io/badge/dependencies-0-black.svg?style=flat-square" alt="zero dependencies">
+    <img src="https://img.shields.io/badge/TypeScript-Ready-black.svg?style=flat-square" alt="typescript ready">
+  </p>
+</div>
 
 ---
 
