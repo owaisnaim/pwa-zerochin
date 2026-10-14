@@ -1,6 +1,6 @@
 {
   "name": "pwa-zerochin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Intelligent mode-aware viewport engine for PWAs. Eliminates iOS WebKit black chins and mobile browser toolbar clipping.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
