@@ -24,14 +24,13 @@ Building a full-screen mobile web app or PWA often leaves developers trapped bet
  │       Top Bar        │               │    Dynamic Island    │
  ├──────────────────────┤               ├──────────────────────┤
  │                      │               │                      │
- │                      │               │                      │
  │      Video / UI      │               │      Video / UI      │
  │                      │               │                      │
- │ ░░░░░░░░░░░░░░░░░░░░ │               ├──────────────────────┤
- ├──────────────────────┤               │  █ BLACK CHIN GAP █  │ <── Viewport bug!
- │  [Browser Toolbar]   │               └──────────────────────┘
- └──────────────────────┘                   (Home Indicator)
-  (Buttons hidden under!)
+ │ ░░░░░░░░░░░░░░░░░░░░ │               │                      │
+ ├──────────────────────┤               ├──────────────────────┤
+ │  [Browser Toolbar]   │               │  █ BLACK CHIN GAP █  │ <── Viewport bug!
+ └──────────────────────┘               └──────────────────────┘
+  (Buttons hidden under)                 (Dead space at bottom)
 ```
 
 1. **In Mobile Browser Tabs**: The browser's bottom navigation bar covers your bottom action buttons, scrubbers, and controls.
