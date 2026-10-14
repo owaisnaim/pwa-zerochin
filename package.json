@@ -1,0 +1,71 @@
+{
+  "name": "pwa-zerochin",
+  "version": "1.0.0",
+  "description": "Intelligent mode-aware viewport engine for PWAs. Eliminates iOS WebKit black chins and mobile browser toolbar clipping.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "style": "./dist/styles.css",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.mjs",
+      "require": "./dist/react.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "pwa",
+    "viewport",
+    "dvh",
+    "100vh",
+    "zerochin",
+    "safari",
+    "webkit",
+    "ios",
+    "black-chin",
+    "safe-area",
+    "react-pwa",
+    "mobile-web",
+    "tailwind"
+  ],
+  "author": "Mohd Owais Naim <owaisnaim9@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/owaisnaim/pwa-zerochin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/owaisnaim/pwa-zerochin/issues"
+  },
+  "homepage": "https://github.com/owaisnaim/pwa-zerochin#readme",
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "react": "^18.3.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3"
+  }
+}

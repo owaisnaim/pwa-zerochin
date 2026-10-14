@@ -1,0 +1,55 @@
+/**
+ * pwa-zerochin - Mode-Aware Viewport Stylesheet
+ *
+ * Automatically balances:
+ * - 100vh in Standalone PWA mode (Eliminates the iOS WebKit black chin gap)
+ * - 100dvh in Mobile Browser tabs (Eliminates toolbar overlap in Safari & Chrome)
+ */
+
+:root {
+  --pwa-vh: 100dvh;
+  --pwa-half-vh: 50dvh;
+}
+
+/* Standalone PWA (iOS Home Screen / Android WebAPK / Desktop PWA) */
+@media (display-mode: standalone) {
+  :root {
+    --pwa-vh: 100vh;
+    --pwa-half-vh: 50vh;
+  }
+}
+
+html.is-standalone {
+  --pwa-vh: 100vh;
+  --pwa-half-vh: 50vh;
+}
+
+/* Utility Classes */
+.h-pwa {
+  height: var(--pwa-vh, 100vh);
+}
+
+.min-h-pwa {
+  min-height: var(--pwa-vh, 100vh);
+}
+
+.max-h-pwa {
+  max-height: var(--pwa-vh, 100vh);
+}
+
+.h-pwa-half {
+  height: var(--pwa-half-vh, 50vh);
+}
+
+.max-h-pwa-half {
+  max-height: var(--pwa-half-vh, 50vh);
+}
+
+/* Zero-chin full bleed container helper */
+.pwa-fullbleed-root {
+  height: 100%;
+  height: var(--pwa-vh, 100vh);
+  min-height: var(--pwa-vh, 100vh);
+  width: 100%;
+  overflow: hidden;
+}
