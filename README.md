@@ -33,8 +33,8 @@ Building a full-screen mobile web app or PWA often leaves developers trapped bet
   (Buttons hidden under)                 (Dead space at bottom)
 ```
 
-1. **In Mobile Browser Tabs**: The browser's bottom navigation bar covers your bottom action buttons, scrubbers, and controls.
-2. **In Standalone Installed PWA**: Fixing the browser tab bug causes an ugly empty black gap ("chin") at the bottom of the screen instead of going full-bleed edge-to-edge.
+1. **In Mobile Browser Tabs (Safari & Chrome)**: The browser's bottom navigation bar covers your bottom action buttons, scrubbers, and controls.
+2. **In Standalone Installed PWA (iOS Safari / WebKit)**: Fixing the browser bug causes iOS WebKit to leave an ugly empty black gap ("chin") at the bottom of the screen instead of going full-bleed edge-to-edge.
 
 ---
 
@@ -42,8 +42,8 @@ Building a full-screen mobile web app or PWA often leaves developers trapped bet
 
 `pwa-zerochin` automatically detects the environment and ensures the viewport is always pixel-perfect:
 
-* 📱 **Installed PWA**: 100% full-bleed edge-to-edge screen coverage with **zero black chin**.
-* 🌐 **Mobile Browser Tabs**: All controls and buttons sit **flush above the browser navigation bar** with zero toolbar clipping.
+* 📱 **Installed PWA (iOS & Android)**: 100% full-bleed edge-to-edge screen coverage with **zero black chin** (fixes the notorious iOS WebKit gap).
+* 🌐 **Mobile Browser Tabs (Safari & Chrome)**: All controls and buttons sit **flush above the browser navigation bar** with zero toolbar clipping.
 
 ---
 
