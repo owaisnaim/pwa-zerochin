@@ -221,13 +221,6 @@ Now you can simply use:
 | `usePwaZeroChin()` | `() => PwaZeroChinState` | All-in-one hook returning `{ isStandalone, vhUnit, vhValue, halfVhValue, style }`. |
 | `<ZeroChinHeadScript />` | `React.FC` | Pre-mount `<script>` tag component for Next.js or React `<head>`. |
 
-### CSS Variables
-
-| Variable | Installed PWA | Mobile Browser Tab |
-| :--- | :--- | :--- |
-| `--pwa-vh` | `100vh` (Edge-to-edge) | `100dvh` (Above browser bar) |
-| `--pwa-half-vh` | `50vh` | `50dvh` |
-
 ---
 
 ## 🤝 Contributing
