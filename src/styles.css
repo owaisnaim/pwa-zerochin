@@ -7,8 +7,15 @@
  */
 
 :root {
-  --pwa-vh: 100dvh;
-  --pwa-half-vh: 50dvh;
+  --pwa-vh: 100vh;
+  --pwa-half-vh: 50vh;
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --pwa-vh: 100dvh;
+    --pwa-half-vh: 50dvh;
+  }
 }
 
 /* Standalone PWA (iOS Home Screen / Android WebAPK / Desktop PWA) */

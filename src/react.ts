@@ -1,31 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import { isStandalone, getZeroChinSnippet, PwaZeroChinOptions } from './core';
 
+// Re-export all core exports for React consumers
+export * from './core';
+
+const DISPLAY_MODE_QUERY =
+  '(display-mode: standalone), (display-mode: minimal-ui), (display-mode: fullscreen)';
+
+function subscribe(onStoreChange: () => void): () => void {
+  if (typeof window === 'undefined' || !window.matchMedia) {
+    return () => {};
+  }
+  const mql = window.matchMedia(DISPLAY_MODE_QUERY);
+  if (typeof mql.addEventListener === 'function') {
+    mql.addEventListener('change', onStoreChange);
+    return () => mql.removeEventListener('change', onStoreChange);
+  } else if (typeof (mql as any).addListener === 'function') {
+    (mql as any).addListener(onStoreChange);
+    return () => (mql as any).removeListener(onStoreChange);
+  }
+  return () => {};
+}
+
+const getClientSnapshot = (): boolean => isStandalone();
+const getServerSnapshot = (): boolean => false;
+
+const useSyncExternalStore = (React as any).useSyncExternalStore as
+  | (<T>(
+      subscribe: (onStoreChange: () => void) => () => void,
+      getSnapshot: () => T,
+      getServerSnapshot?: () => T
+    ) => T)
+  | undefined;
+
 /**
  * React hook to reactively track whether the app is running in PWA standalone mode.
- * Safe for Server-Side Rendering (Next.js, Remix, Astro).
+ * Safe for Server-Side Rendering and hydration in Next.js, Remix, Astro, and React 18/19.
  */
 export function useIsStandalone(): boolean {
-  const [standalone, setStandalone] = useState<boolean>(() => isStandalone());
+  if (typeof useSyncExternalStore === 'function') {
+    return useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
+  }
+
+  // Fallback for React 16.8 / 17
+  const [standalone, setStandalone] = useState<boolean>(false);
 
   useEffect(() => {
-    // Sync state on client mount
     setStandalone(isStandalone());
-
-    if (typeof window === 'undefined' || !window.matchMedia) return;
-
-    const mql = window.matchMedia('(display-mode: standalone)');
-    const onChange = (e: MediaQueryListEvent) => {
-      setStandalone(Boolean(e.matches || (window.navigator as any)?.standalone === true));
-    };
-
-    if (typeof mql.addEventListener === 'function') {
-      mql.addEventListener('change', onChange);
-      return () => mql.removeEventListener('change', onChange);
-    } else if (typeof (mql as any).addListener === 'function') {
-      (mql as any).addListener(onChange);
-      return () => (mql as any).removeListener(onChange);
-    }
+    return subscribe(() => {
+      setStandalone(isStandalone());
+    });
   }, []);
 
   return standalone;

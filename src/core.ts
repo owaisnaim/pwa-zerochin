@@ -95,7 +95,9 @@ export function initPwaZeroChin(options?: PwaZeroChinOptions): () => void {
   // Listen for dynamic display-mode transitions
   let cleanupMediaQuery: (() => void) | undefined;
   if (window.matchMedia) {
-    const mql = window.matchMedia('(display-mode: standalone)');
+    const mql = window.matchMedia(
+      '(display-mode: standalone), (display-mode: minimal-ui), (display-mode: fullscreen)'
+    );
     const handler = () => apply();
 
     if (typeof mql.addEventListener === 'function') {
